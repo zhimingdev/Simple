@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+
+//android配置
+def config = rootProject.ext.android
+
+//相关库依赖
+def librarys = rootProject.ext.supportDependencies
+
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    signingConfigs {
+        release {
+            storeFile file(rootProject.ext.android.STORE_FILE)
+            storePassword rootProject.ext.android.STORE_PASSWORD
+            keyAlias rootProject.ext.android.KEY_ALIAS
+            keyPassword rootProject.ext.android.KEY_PASSWORD
+        }
+        debug {
+            storeFile file(rootProject.ext.android.STORE_FILE)
+            storePassword rootProject.ext.android.STORE_PASSWORD
+            keyAlias rootProject.ext.android.KEY_ALIAS
+            keyPassword rootProject.ext.android.KEY_PASSWORD
+        }
+    }
+
+    defaultConfig {
+        signingConfig signingConfigs.release
+        applicationId "com.zzmfaster.myapplication"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        android.compileOptions.sourceCompatibility 1.8
+        android.compileOptions.targetCompatibility 1.8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//分享
+MobSDK {
+    appKey "254964ac0d9e8"
+    appSecret "ee9ac1f0507eec880ec049a80cd82aac"
+
+    ShareSDK {
+        devInfo {
+            Wechat {
+                appId "wxf181d3d8e0e201a0"
+                appSecret "634067b6db506698845f1340cdd850b3"
+            }
+            WechatMoments {
+            }
+            QQ {
+                shareByAppClient true}
+            QZone {
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation librarys.supportAppcompat
+    implementation librarys.supportDesign
+    implementation librarys.butterknife
+    implementation librarys.eventbus
+    implementation librarys.BottomBarLayout
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation librarys.discretescrollview
+    implementation librarys.baserecycleradapter
+    implementation librarys.glide
+    implementation librarys.cardview
+    implementation librarys.transformations
+    implementation librarys.rxpermissions
+    implementation librarys.banner
+    implementation librarys.zxing
+    implementation librarys.retrofitadapter
+    implementation librarys.retrofitconverter
+    implementation librarys.rxjava
+    implementation librarys.rxandroid
+    implementation librarys.retrofit2
+    implementation librarys.gson
+    implementation librarys.ger
+    implementation librarys.recyclerview
+    implementation librarys.cardview
+}
