@@ -93,4 +93,6 @@ dependencies {
     implementation librarys.ger
     implementation librarys.recyclerview
     implementation librarys.cardview
+    implementation librarys.percent
+    implementation librarys.utils
 }
