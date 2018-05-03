@@ -23,6 +23,6 @@
     <color name="laser_color">#0F0</color>
     <color name="corner_color">#00FF00</color>
 
-    <color name="hor_line">#e1e1e1</color>
+    <color name="hor_line">#f0f0f0</color>
     <!-- QRCode scanner color end -->
 </resources>

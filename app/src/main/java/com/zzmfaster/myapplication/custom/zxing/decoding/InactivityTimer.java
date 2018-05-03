@@ -16,7 +16,7 @@
 
 package com.zzmfaster.myapplication.custom.zxing.decoding;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -33,10 +33,10 @@ public final class InactivityTimer {
 
   private final ScheduledExecutorService inactivityTimer =
       Executors.newSingleThreadScheduledExecutor(new DaemonThreadFactory());
-  private final Activity activity;
+  private final AppCompatActivity activity;
   private ScheduledFuture<?> inactivityFuture = null;
 
-  public InactivityTimer(Activity activity) {
+  public InactivityTimer(AppCompatActivity activity) {
     this.activity = activity;
     onActivity();
   }

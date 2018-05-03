@@ -36,7 +36,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static android.app.Activity.RESULT_OK;
+import static android.support.v7.app.AppCompatActivity.RESULT_OK;
 
 public class HomeFragment extends BaseFragment {
 

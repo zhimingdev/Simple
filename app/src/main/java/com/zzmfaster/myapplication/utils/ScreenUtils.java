@@ -1,7 +1,7 @@
 package com.zzmfaster.myapplication.utils;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 public class ScreenUtils {
@@ -12,9 +12,9 @@ public class ScreenUtils {
      *            屏幕透明度0.0-1.0 1表示完全不透明
      */
     public static void setBackgroundAlpha(Context context, float bgAlpha) {
-        WindowManager.LayoutParams lp = ((Activity)context).getWindow()
+        WindowManager.LayoutParams lp = ((AppCompatActivity)context).getWindow()
                 .getAttributes();
         lp.alpha = bgAlpha;
-        ((Activity)context).getWindow().setAttributes(lp);
+        ((AppCompatActivity)context).getWindow().setAttributes(lp);
     }
 }

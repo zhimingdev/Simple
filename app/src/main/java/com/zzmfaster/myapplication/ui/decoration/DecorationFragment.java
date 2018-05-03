@@ -25,13 +25,19 @@ import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
+import com.zzmfaster.myapplication.bean.Msg;
 import com.zzmfaster.myapplication.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.Unbinder;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -49,6 +55,9 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
     ImageView ivShare;
     @BindView(R.id.banner_rv)
     DiscreteScrollView bannerRv;
+    @BindView(R.id.tv_text)
+    TextView tvText;
+    Unbinder unbinder;
     private BaseQuickAdapter adapter;
     private AMapLocationClient mLocationClient = null;////定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -72,7 +81,8 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
 
     @Override
     public void initView() {
-        for (int i = 0 ;i<images.length;i++) {
+        EventBus.getDefault().register(this);
+        for (int i = 0; i < images.length; i++) {
             list.add(images[i]);
         }
         //初始化定位
@@ -83,12 +93,12 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
         mLocationOption = new AMapLocationClientOption();
         loadLocation();
         bannerRv.setOrientation(DSVOrientation.HORIZONTAL);
-        adapter =new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_imageview_card) {
+        adapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_imageview_card) {
             @Override
             protected void convert(BaseViewHolder helper, String item) {
                 Glide.with(mActivity).load(item)
                         .bitmapTransform(new RoundedCornersTransformation(mActivity, 20, 0))
-                        .into((ImageView)helper.getView(R.id.image));
+                        .into((ImageView) helper.getView(R.id.image));
             }
         };
 
@@ -98,7 +108,7 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
                 .build());
 
         adapter.setNewData(list);
-        autoRunnable = new Runnable(){
+        autoRunnable = new Runnable() {
             @Override
             public void run() {
                 if (bannerRv == null) {
@@ -108,11 +118,11 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
                     int currentItem = bannerRv.getCurrentItem();
                     bannerRv.smoothScrollToPosition(++currentItem);
                 }
-                bannerRv.postDelayed(this,5000);
+                bannerRv.postDelayed(this, 5000);
             }
         };
         bannerRv.setAdapter(InfiniteScrollAdapter.wrap(adapter));
-        bannerRv.postDelayed(autoRunnable,5000);
+        bannerRv.postDelayed(autoRunnable, 5000);
 
         ivShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +178,7 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
                 tvLocation.setText("定位失败");
                 int errorCode = aMapLocation.getErrorCode();
                 String errorInfo = aMapLocation.getErrorInfo();
-                System.out.println("错误码"+errorCode+"-----"+errorInfo);
+                System.out.println("错误码" + errorCode + "-----" + errorInfo);
             }
         }
     }
@@ -177,6 +187,9 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
     public void onDestroyView() {
         super.onDestroyView();
         bannerRv.removeCallbacks(autoRunnable);
+        EventBus.getDefault().removeAllStickyEvents();
+        EventBus.getDefault().unregister(this);
+        unbinder.unbind();
     }
 
     @Override
@@ -204,7 +217,7 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
         view.startAnimation(scaleAnimations);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupWindow.showAtLocation(view, Gravity.BOTTOM,0,0);
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
 
     @Override
@@ -268,18 +281,27 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                System.out.println("错误"+throwable.toString());
+                System.out.println("错误" + throwable.toString());
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
                 popupWindow.dismiss();
-                ToastUtils.showToast(mActivity,"分享取消",1000);
+                ToastUtils.showToast(mActivity, "分享取消", 1000);
             }
         });
         share.show(mActivity);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void onEvent(Msg messageEvent) {
+        String className = messageEvent.getMsg();
+        switch (className) {
+            case "1":
+                tvText.setText("数据变化了");
+                break;
+        }
+    }
 
 }
 

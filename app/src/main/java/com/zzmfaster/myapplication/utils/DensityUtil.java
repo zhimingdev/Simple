@@ -1,7 +1,7 @@
 package com.zzmfaster.myapplication.utils;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
 public class DensityUtil {
@@ -31,14 +31,14 @@ public class DensityUtil {
 	}
 
     // 屏幕宽度（像素）
-    public static  int getWindowWidth(Activity context){
+    public static  int getWindowWidth(AppCompatActivity context){
         DisplayMetrics metric = new DisplayMetrics();
         context.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.widthPixels;
     }
 
     // 屏幕高度（像素）
-    public static int getWindowHeight(Activity activity){
+    public static int getWindowHeight(AppCompatActivity activity){
         DisplayMetrics metric = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
         return metric.heightPixels;

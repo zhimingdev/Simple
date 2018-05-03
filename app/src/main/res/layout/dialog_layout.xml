@@ -32,7 +32,7 @@
                 android:id="@+id/iv_close"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/icon_close"
+                app:srcCompat="@drawable/icon_close"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"/>
         </RelativeLayout>

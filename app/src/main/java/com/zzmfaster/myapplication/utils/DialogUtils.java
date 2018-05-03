@@ -1,9 +1,9 @@
 package com.zzmfaster.myapplication.utils;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +22,8 @@ public class DialogUtils {
     }
 
     private static AlertDialog showDialog(Activity activity, String title, Object content, String leftcolor,
-              String rightColor,Drawable bgcolor,boolean isshow,
-              String[] arrs, View.OnClickListener clostlis, View.OnClickListener poslis) {
+                                          String rightColor, Drawable bgcolor, boolean isshow,
+                                          String[] arrs, View.OnClickListener clostlis, View.OnClickListener poslis) {
         AlertDialog dialog = new AlertDialog.Builder(activity, R.style.dialog).create();
         Window window = activity.getWindow();
         window.setWindowAnimations(R.style.popwin_anim_style);
