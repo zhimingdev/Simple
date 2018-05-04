@@ -43,6 +43,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 //分享
@@ -89,10 +93,14 @@ dependencies {
     implementation librarys.rxjava
     implementation librarys.rxandroid
     implementation librarys.retrofit2
+    implementation librarys.rxbinding
     implementation librarys.gson
     implementation librarys.ger
     implementation librarys.recyclerview
     implementation librarys.cardview
     implementation librarys.percent
     implementation librarys.utils
+    implementation librarys.loginterceptor
+    implementation librarys.interceptor
+    implementation 'com.android.support:multidex:+'
 }

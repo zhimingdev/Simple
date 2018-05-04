@@ -53,6 +53,7 @@
         <activity android:name=".ui.decoration.MapActivity"/>
         <activity android:name=".ui.CommonalityActivity"/>
         <activity android:name=".custom.zxing.activity.CaptureActivity"/>
+        <activity android:name=".ui.test.TestActivity"/>
 
     </application>
 

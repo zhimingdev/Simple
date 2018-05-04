@@ -37,7 +37,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.Unbinder;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.onekeyshare.OnekeyShare;
@@ -57,7 +56,6 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
     DiscreteScrollView bannerRv;
     @BindView(R.id.tv_text)
     TextView tvText;
-    Unbinder unbinder;
     private BaseQuickAdapter adapter;
     private AMapLocationClient mLocationClient = null;////定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -189,7 +187,6 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
         bannerRv.removeCallbacks(autoRunnable);
         EventBus.getDefault().removeAllStickyEvents();
         EventBus.getDefault().unregister(this);
-        unbinder.unbind();
     }
 
     @Override
