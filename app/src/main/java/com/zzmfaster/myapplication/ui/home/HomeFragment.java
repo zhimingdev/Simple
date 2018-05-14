@@ -173,8 +173,6 @@ public class HomeFragment extends BaseFragment {
         Map<String,String> map = new HashMap<>();
         map.put("start","0");
         map.put("count","10");
-
-
         RetrofitHelper.getInstance(mActivity)
                 .getRetrofitService()
                 .getSearchBooks(map)
