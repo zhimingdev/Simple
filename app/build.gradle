@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.mob.sdk'
 
 //android配置
@@ -36,6 +37,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         android.compileOptions.sourceCompatibility 1.8
         android.compileOptions.targetCompatibility 1.8
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -102,5 +104,9 @@ dependencies {
     implementation librarys.utils
     implementation librarys.loginterceptor
     implementation librarys.interceptor
+    implementation librarys.photoview
+    implementation librarys.multidex
     implementation 'com.android.support:multidex:+'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+

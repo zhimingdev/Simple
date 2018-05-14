@@ -16,6 +16,11 @@ import com.zzmfaster.myapplication.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -27,6 +32,15 @@ public abstract class BaseFragment extends Fragment {
      */
     protected FragmentActivity mActivity;
     private Unbinder unbinder;
+
+    public <T> ObservableTransformer<T,T> setThread(){
+        return new ObservableTransformer<T,T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<T> upstream) {
+                return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+            }
+        };
+    }
 
     @Override
     public void onAttach(Context context) {

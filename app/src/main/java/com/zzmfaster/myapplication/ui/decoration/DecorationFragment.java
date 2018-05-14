@@ -1,5 +1,6 @@
 package com.zzmfaster.myapplication.ui.decoration;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
@@ -97,6 +98,16 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
                 Glide.with(mActivity).load(item)
                         .bitmapTransform(new RoundedCornersTransformation(mActivity, 20, 0))
                         .into((ImageView) helper.getView(R.id.image));
+
+                helper.getView(R.id.image).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        Intent intent = new Intent(mContext,PhotoActivity.class);
+                        Intent intent = new Intent(mContext,TestPhotoActivity.class);
+                        intent.putExtra("url",item);
+                        startActivity(intent);
+                    }
+                });
             }
         };
 

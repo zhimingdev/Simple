@@ -28,11 +28,18 @@ import com.youth.banner.loader.ImageLoader;
 import com.zzmfaster.myapplication.Constant;
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
+import com.zzmfaster.myapplication.bean.MovieBean;
 import com.zzmfaster.myapplication.custom.zxing.activity.CaptureActivity;
+import com.zzmfaster.myapplication.http.BaseObserver;
+import com.zzmfaster.myapplication.http.BaseRetData;
+import com.zzmfaster.myapplication.http.RetrofitHelper;
+import com.zzmfaster.myapplication.ui.CommonalityActivity;
 import com.zzmfaster.myapplication.utils.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -163,6 +170,32 @@ public class HomeFragment extends BaseFragment {
                 startQrCode();
             }
         });
+        Map<String,String> map = new HashMap<>();
+        map.put("start","0");
+        map.put("count","10");
+        RetrofitHelper.getInstance(mActivity)
+                .getRetrofitService()
+                .getSearchBooks(map)
+                .compose(this.<MovieBean>setThread())
+                .subscribe(new BaseObserver<MovieBean>() {
+
+                    @Override
+                    protected void onSuccees(MovieBean t) throws Exception {
+                        ToastUtils.showToast(mActivity,t.getCount()+"",1000);
+                    }
+
+                    @Override
+                    protected void onCodeError(BaseRetData<MovieBean> t) throws Exception {
+
+                    }
+
+
+                    @Override
+                    protected void onFailure(Throwable e) throws Exception {
+                        ToastUtils.showToast(mActivity,"连接失败",1500);
+                    }
+                });
+
     }
 
     @Override
@@ -220,17 +253,17 @@ public class HomeFragment extends BaseFragment {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
 
-            //跳转到自己的webview打开
-//            Bundle bundle1 = new Bundle();
-//            bundle1.putString("result",scanResult);
-//            gotoActivity(CommonalityActivity.class,false,bundle1);
+//            跳转到自己的webview打开
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("result",scanResult);
+            gotoActivity(CommonalityActivity.class,false,bundle1);
 
             //直接用默认浏览器打开
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse(scanResult);
-            intent.setData(content_url);
-            startActivity(intent);
+//            Intent intent = new Intent();
+//            intent.setAction("android.intent.action.VIEW");
+//            Uri content_url = Uri.parse(scanResult);
+//            intent.setData(content_url);
+//            startActivity(intent);
         }else{
             ToastUtils.showToast(mActivity,"解析二维码失败",1500);
         }

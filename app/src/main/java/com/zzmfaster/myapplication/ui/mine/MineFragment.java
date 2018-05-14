@@ -7,7 +7,6 @@ import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
 import com.zzmfaster.myapplication.custom.titleview.TitleView;
 import com.zzmfaster.myapplication.ui.test.TestActivity;
-import com.zzmfaster.myapplication.utils.ToastUtils;
 
 import butterknife.BindView;
 
@@ -32,7 +31,7 @@ public class MineFragment extends BaseFragment {
         titleMine.getLeftBackImageTv().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ToastUtils.showToast(mActivity,"被点击了",1500);
+               gotoActivity(MsgActivity.class);
             }
         });
 

@@ -19,6 +19,11 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -153,5 +158,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
         return super.onTouchEvent(event);
+    }
+
+    public <T> ObservableTransformer<T,T> setThread(){
+        return new ObservableTransformer<T,T>() {
+            @Override
+            public ObservableSource<T> apply(Observable<T> upstream) {
+                return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+            }
+        };
     }
 }

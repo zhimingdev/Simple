@@ -54,6 +54,9 @@
         <activity android:name=".ui.CommonalityActivity"/>
         <activity android:name=".custom.zxing.activity.CaptureActivity"/>
         <activity android:name=".ui.test.TestActivity"/>
+        <activity android:name=".ui.mine.MsgActivity"/>
+        <activity android:name=".ui.decoration.PhotoActivity"/>
+        <activity android:name=".ui.decoration.TestPhotoActivity"/>
 
     </application>
 
