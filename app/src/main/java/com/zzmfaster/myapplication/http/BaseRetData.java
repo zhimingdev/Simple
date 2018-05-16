@@ -5,7 +5,7 @@ public class BaseRetData<T> {
     private int code;          //返回请求码
     private T data;
     private int status;        //请求状态
-    private static int SUCCESS_CODE = 200;
+    private static int SUCCESS_CODE = 0;
 
     public int getCode() {
         return code;

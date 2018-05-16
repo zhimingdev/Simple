@@ -113,4 +113,5 @@ public class CommonalityActivity extends BaseActivity {
         super.onPause();
         finish();
     }
+
 }

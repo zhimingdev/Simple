@@ -122,7 +122,7 @@ public class HttpCommonInterceptor implements Interceptor {
         }
         Request newRequest = requestBuilder.build();
         Response response = chain.proceed(newRequest);
-        Log.i("OkHttp",new Gson().toJson(response));
+        Log.i("OkHttp",new Gson().toJson(response.body()));
         return chain.proceed(newRequest);
     }
 

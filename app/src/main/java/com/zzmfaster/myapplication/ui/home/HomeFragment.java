@@ -186,7 +186,7 @@ public class HomeFragment extends BaseFragment {
         Map<String, String> map = new HashMap<>();
         map.put("start", "0");
         map.put("count", "10");
-        RetrofitHelper.getInstance(mActivity)
+        RetrofitHelper.getInstance(mActivity,RetrofitHelper.DEFAULT_NEW)
                 .getRetrofitService()
                 .getSearchBooks(map)
                 .compose(this.<MovieBean>setThread())

@@ -2,6 +2,7 @@ package com.zzmfaster.myapplication.ui.find;
 
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -33,12 +34,14 @@ public class FindFragment extends BaseFragment {
     TextView tvName2;
     @BindView(R.id.tv_name3)
     TextView tvName3;
+    @BindView(R.id.find_fl)
+    FrameLayout findFl;
     private AlertDialog dialog;
-    String[] menuStr1 = new String[] { "全部", "粮油", "衣服", "图书", "电子产品",
-            "酒水饮料", "水果" };
-    String[] menuStr2 = new String[] { "不限","综合排序", "配送费最低" };
-    String[] menuStr3 = new String[] { "不限","优惠活动", "特价活动", "免配送费",
-            "可在线支付" };
+    String[] menuStr1 = new String[]{"全部", "粮油", "衣服", "图书", "电子产品",
+            "酒水饮料", "水果"};
+    String[] menuStr2 = new String[]{"不限", "综合排序", "配送费最低"};
+    String[] menuStr3 = new String[]{"不限", "优惠活动", "特价活动", "免配送费",
+            "可在线支付"};
 
 
     public static FindFragment newInstance() {
@@ -59,11 +62,11 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 AnimaUtils.openAnima(ivOne);
-                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName1,list, R.anim.view_scaleanim, llTop);
+                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName1, list, R.anim.view_scaleanim, llTop);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
-                       AnimaUtils.closeAnima(ivOne);
+                        AnimaUtils.closeAnima(ivOne);
                     }
                 });
             }
@@ -73,7 +76,7 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 AnimaUtils.openAnima(ivTwo);
-                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName2,list1, R.anim.view_scaleanim, llTop);
+                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName2, list1, R.anim.view_scaleanim, llTop);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -87,7 +90,7 @@ public class FindFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 AnimaUtils.openAnima(ivThree);
-                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName3,list2, R.anim.view_scaleanim, llTop);
+                PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName3, list2, R.anim.view_scaleanim, llTop);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
                     public void onDismiss() {
@@ -111,4 +114,5 @@ public class FindFragment extends BaseFragment {
             dialog.show();
         }
     }
+
 }
