@@ -16,11 +16,7 @@ import io.reactivex.disposables.Disposable;
  * @description 写自己的代码, 让别人说去吧!
  */
 
-//public abstract class BaseObserver<T> implements Observer<BaseRetData<T>> {
-public abstract class BaseObserver<T> implements Observer<T> {
-
-    public BaseObserver() {
-    }
+public abstract class BaseNewObserver<T> implements Observer<BaseRetData<T>> {
 
     @Override
     public void onSubscribe(Disposable d) {
@@ -28,31 +24,20 @@ public abstract class BaseObserver<T> implements Observer<T> {
 
     }
 
-//    @Override
-//    public void onNext(BaseRetData<T> retData) {
-//        if (retData.isSuccess()) {
-//            try {
-//                onSuccees(retData);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            try {
-//                onCodeError(retData);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
-
     @Override
-    public void onNext(T t) {
-
-        try {
-            onSuccees(t);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void onNext(BaseRetData<T> retData) {
+        if (retData.isSuccess()) {
+            try {
+                onSuccees(retData);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                onCodeError(retData);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -82,7 +67,7 @@ public abstract class BaseObserver<T> implements Observer<T> {
      * @param t
      * @throws Exception
      */
-    protected abstract void onSuccees(T t) throws Exception;
+    protected abstract void onSuccees(BaseRetData<T> t) throws Exception;
 
     /**
      * 返回成功了,但是code错误

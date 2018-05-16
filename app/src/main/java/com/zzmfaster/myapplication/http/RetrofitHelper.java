@@ -23,6 +23,7 @@ public class RetrofitHelper {
 
     private Context mContext;
     public static RetrofitHelper instance = null;
+
     //构建拦截器
     OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
@@ -38,8 +39,6 @@ public class RetrofitHelper {
         init();
     }
 
-    public RetrofitHelper() {
-    }
 
     public static RetrofitHelper getInstance(Context context) {
         if (instance == null) {

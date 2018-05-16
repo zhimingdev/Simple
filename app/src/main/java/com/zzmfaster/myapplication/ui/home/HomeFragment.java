@@ -12,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -21,12 +23,14 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
 import com.zzmfaster.myapplication.Constant;
 import com.zzmfaster.myapplication.R;
+import com.zzmfaster.myapplication.adapter.MovieAdapter;
 import com.zzmfaster.myapplication.base.BaseFragment;
 import com.zzmfaster.myapplication.bean.MovieBean;
 import com.zzmfaster.myapplication.custom.zxing.activity.CaptureActivity;
@@ -47,7 +51,7 @@ import static android.support.v7.app.AppCompatActivity.RESULT_OK;
 
 public class HomeFragment extends BaseFragment {
 
-//    @BindView(R.id.sv)
+    //    @BindView(R.id.sv)
 //    MyScrollview sv;
     @BindView(R.id.nsv)
     NestedScrollView nestedScrollView;
@@ -65,6 +69,8 @@ public class HomeFragment extends BaseFragment {
     ViewFlipper filPer;
     @BindView(R.id.iv_code)
     ImageView ivCode;
+    @BindView(R.id.rlv)
+    RecyclerView rlv;
 
     private int imageHeight;
     private String[] images = {"http://bpic.588ku.com/back_pic/00/03/40/63561e40448baf8.jpg",
@@ -74,7 +80,9 @@ public class HomeFragment extends BaseFragment {
     List<String> list = new ArrayList<>();
     List<String> list1 = new ArrayList<>();
 
-    private String[] texts = {"测试文本1","测试文本2","测试文本3","测试文本4","测试文本5"};
+    private String[] texts = {"测试文本1", "测试文本2", "测试文本3", "测试文本4", "测试文本5"};
+    List<MovieBean.SubjectsBean> lists = new ArrayList<>();
+    private List<MovieBean.SubjectsBean> subjects;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -87,7 +95,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        for (String item:images){
+        for (String item : images) {
             list.add(item);
         }
         ViewTreeObserver vto = tvLl.getViewTreeObserver();
@@ -132,7 +140,7 @@ public class HomeFragment extends BaseFragment {
             public void run() {
                 swipeRefreshLayout.setRefreshing(false);
             }
-        },1500);
+        }, 1500);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -142,17 +150,17 @@ public class HomeFragment extends BaseFragment {
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                },1500);
+                }, 1500);
             }
         });
         startFilper();
     }
 
     private void startFilper() {
-        for (String string:texts){
+        for (String string : texts) {
             list1.add(string);
         }
-        for (String s:list1) {
+        for (String s : list1) {
             View view = LayoutInflater.from(mActivity).inflate(R.layout.filper_item, null);
             TextView tv = view.findViewById(R.id.tv);
             tv.setText(s);
@@ -164,15 +172,20 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
+        rlv.setLayoutManager(linearLayoutManager);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        MovieAdapter movieAdapter = new MovieAdapter();
+        rlv.setAdapter(movieAdapter);
         ivCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startQrCode();
             }
         });
-        Map<String,String> map = new HashMap<>();
-        map.put("start","0");
-        map.put("count","10");
+        Map<String, String> map = new HashMap<>();
+        map.put("start", "0");
+        map.put("count", "10");
         RetrofitHelper.getInstance(mActivity)
                 .getRetrofitService()
                 .getSearchBooks(map)
@@ -181,7 +194,8 @@ public class HomeFragment extends BaseFragment {
 
                     @Override
                     protected void onSuccees(MovieBean t) throws Exception {
-                        ToastUtils.showToast(mActivity,t.getCount()+"",1000);
+                        subjects = t.getSubjects();
+                        movieAdapter.setNewData(subjects);
                     }
 
                     @Override
@@ -192,9 +206,19 @@ public class HomeFragment extends BaseFragment {
 
                     @Override
                     protected void onFailure(Throwable e) throws Exception {
-                        ToastUtils.showToast(mActivity,"连接失败",1500);
                     }
                 });
+
+        movieAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                MovieBean.SubjectsBean subjectsBean = subjects.get(position);
+                String alt = subjectsBean.getAlt();
+                Bundle bundle = new Bundle();
+                bundle.putString("result",alt);
+                gotoActivity(CommonalityActivity.class,false,bundle);
+            }
+        });
 
     }
 
@@ -255,8 +279,8 @@ public class HomeFragment extends BaseFragment {
 
 //            跳转到自己的webview打开
             Bundle bundle1 = new Bundle();
-            bundle1.putString("result",scanResult);
-            gotoActivity(CommonalityActivity.class,false,bundle1);
+            bundle1.putString("result", scanResult);
+            gotoActivity(CommonalityActivity.class, false, bundle1);
 
             //直接用默认浏览器打开
 //            Intent intent = new Intent();
@@ -264,8 +288,8 @@ public class HomeFragment extends BaseFragment {
 //            Uri content_url = Uri.parse(scanResult);
 //            intent.setData(content_url);
 //            startActivity(intent);
-        }else{
-            ToastUtils.showToast(mActivity,"解析二维码失败",1500);
+        } else {
+            ToastUtils.showToast(mActivity, "解析二维码失败", 1500);
         }
     }
 

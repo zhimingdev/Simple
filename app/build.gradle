@@ -108,5 +108,6 @@ dependencies {
     implementation librarys.multidex
     implementation 'com.android.support:multidex:+'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 }
 

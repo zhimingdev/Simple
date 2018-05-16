@@ -9,12 +9,8 @@ import android.widget.TextView;
 
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
-import com.zzmfaster.myapplication.bean.Msg;
 import com.zzmfaster.myapplication.utils.AnimaUtils;
-import com.zzmfaster.myapplication.utils.DialogUtils;
 import com.zzmfaster.myapplication.utils.PopuwindowUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,15 +52,6 @@ public class FindFragment extends BaseFragment {
 
     @Override
     public void initView() {
-//        getResources().getDrawable(R.drawable.shape_dialogtext_rightbg)
-        dialog = DialogUtils.show(mActivity, "温馨提示", "这是测试问饿呢", "#272727", "#46A3FF",
-                getResources().getDrawable(R.drawable.shape_dialogtext_rightbg), true, new String[]{"不好", "好"}, null, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        EventBus.getDefault().postSticky(new Msg("1"));
-                        dialog.dismiss();
-                    }
-                });
         List<String> list = (List<String>) Arrays.asList(menuStr1);
         List<String> list1 = Arrays.asList(menuStr2);
         List<String> list2 = Arrays.asList(menuStr3);

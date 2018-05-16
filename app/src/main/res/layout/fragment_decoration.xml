@@ -66,10 +66,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_text"
-        android:text="测试"/>
-
 </LinearLayout>

@@ -1,5 +1,9 @@
 package com.zzmfaster.myapplication.http;
 
+import android.util.Log;
+
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -117,6 +121,8 @@ public class HttpCommonInterceptor implements Interceptor {
 
         }
         Request newRequest = requestBuilder.build();
+        Response response = chain.proceed(newRequest);
+        Log.i("OkHttp",new Gson().toJson(response));
         return chain.proceed(newRequest);
     }
 

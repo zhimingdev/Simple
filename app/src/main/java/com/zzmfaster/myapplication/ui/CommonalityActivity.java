@@ -1,11 +1,14 @@
 package com.zzmfaster.myapplication.ui;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zzmfaster.myapplication.R;
@@ -23,6 +26,8 @@ public class CommonalityActivity extends BaseActivity {
     ImageButton ibShare;
     @BindView(R.id.wv_content)
     WebView wvContent;
+    @BindView(R.id.progressbar)
+    ProgressBar progressbar;
 
     @Override
     public int getLayoutId() {
@@ -38,9 +43,21 @@ public class CommonalityActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
         settings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
         settings.setSupportZoom(true);  //支持缩放
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);//设置缓存
         //设置用自己的浏览器打开
         wvContent.loadUrl(result);
         wvContent.setWebViewClient(new MyWebViewClient());
+        wvContent.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                progressbar.setProgress(newProgress);
+            }
+
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                tvTitle.setText(title);
+            }
+        });
     }
 
     @Override
@@ -67,6 +84,7 @@ public class CommonalityActivity extends BaseActivity {
         }
     }
 
+
     //自定义浏览器
     class MyWebViewClient extends WebViewClient {
 
@@ -75,7 +93,20 @@ public class CommonalityActivity extends BaseActivity {
             view.loadUrl(url);
             return true;
         }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            progressbar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            progressbar.setVisibility(View.GONE);
+        }
     }
+
     //预防内存泄露
     @Override
     protected void onPause() {
