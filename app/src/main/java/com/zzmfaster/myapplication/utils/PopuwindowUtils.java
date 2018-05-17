@@ -2,9 +2,11 @@ package com.zzmfaster.myapplication.utils;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,15 @@ public class PopuwindowUtils {
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setFocusable(true);
-        popupWindow.showAsDropDown(view);
+        //解决android7.0showAsDropDown无效
+        if (Build.VERSION.SDK_INT < 24) {
+            popupWindow.showAsDropDown(view);
+        } else {
+            // 获取控件的位置，安卓系统>7.0
+            int[] location = new int[2];
+            view.getLocationOnScreen(location);
+            popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, 0, location[1] + view.getHeight());
+        }
         layout.findViewById(R.id.ll_bottom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
