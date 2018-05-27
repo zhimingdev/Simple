@@ -10,7 +10,6 @@ def librarys = rootProject.ext.supportDependencies
 
 android {
     compileSdkVersion config.compileSdkVersion
-    buildToolsVersion config.buildToolsVersion
 
     signingConfigs {
         release {
@@ -109,5 +108,9 @@ dependencies {
     implementation 'com.android.support:multidex:+'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    implementation project(':clocklibrary')
+    implementation 'com.github.DingMouRen:LayoutManagerGroup:f68c9712e5'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
 

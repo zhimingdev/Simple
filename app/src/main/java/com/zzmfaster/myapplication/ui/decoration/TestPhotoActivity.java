@@ -20,7 +20,9 @@ public class TestPhotoActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        String url = getIntent().getStringExtra("url");
+
+        Bundle bundle = getIntent().getExtras();
+        String url = bundle.getString("url");
         Glide.with(this).load(url).into(ivPv);
     }
 

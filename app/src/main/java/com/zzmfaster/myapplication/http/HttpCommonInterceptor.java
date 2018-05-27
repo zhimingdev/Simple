@@ -118,7 +118,6 @@ public class HttpCommonInterceptor implements Interceptor {
             for(Map.Entry<String,String> params:mHeaderParamsMap.entrySet()){
                 requestBuilder.header(params.getKey(),params.getValue());
             }
-
         }
         Request newRequest = requestBuilder.build();
         Response response = chain.proceed(newRequest);

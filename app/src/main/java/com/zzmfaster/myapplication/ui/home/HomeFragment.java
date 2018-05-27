@@ -186,10 +186,10 @@ public class HomeFragment extends BaseFragment {
         Map<String, String> map = new HashMap<>();
         map.put("start", "0");
         map.put("count", "10");
-        RetrofitHelper.getInstance(mActivity,RetrofitHelper.DEFAULT_NEW)
+        RetrofitHelper.getInstance(mActivity)
                 .getRetrofitService()
                 .getSearchBooks(map)
-                .compose(this.<MovieBean>setThread())
+                .compose(this.setThread())
                 .subscribe(new BaseObserver<MovieBean>() {
 
                     @Override

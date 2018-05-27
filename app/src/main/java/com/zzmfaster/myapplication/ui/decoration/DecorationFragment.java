@@ -1,8 +1,8 @@
 package com.zzmfaster.myapplication.ui.decoration;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,9 +103,11 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
                     @Override
                     public void onClick(View v) {
 //                        Intent intent = new Intent(mContext,PhotoActivity.class);
-                        Intent intent = new Intent(mContext,TestPhotoActivity.class);
-                        intent.putExtra("url",item);
-                        startActivity(intent);
+//                        Intent intent = new Intent(mContext,TestPhotoActivity.class);
+////                        intent.putExtra("url",item);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url",item);
+                        gotoActivity(TestPhotoActivity.class,false, bundle);
                     }
                 });
             }

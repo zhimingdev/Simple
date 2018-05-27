@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private InputMethodManager manager;
     private ImmersionBar mImmersionBar;
-    private Context mContext;
+    public Context mContext;
     private Unbinder unbinder;
 
     @Override

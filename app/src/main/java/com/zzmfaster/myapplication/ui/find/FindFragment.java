@@ -93,7 +93,7 @@ public class FindFragment extends BaseFragment {
                 PopupWindow popupWindow = (PopupWindow) PopuwindowUtils.showPopup(mActivity, tvName3, list2, R.anim.view_scaleanim, llTop);
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
-                    public void onDismiss() {
+                    public void onDismiss()  {
                         AnimaUtils.closeAnima(ivThree);
                     }
                 });
@@ -111,7 +111,7 @@ public class FindFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            dialog.show();
+//            dialog.show();
         }
     }
 

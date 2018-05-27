@@ -26,6 +26,10 @@
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
     <!--用于申请获取蓝牙信息进行室内定位-->
 
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
@@ -50,6 +54,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".GuideActivity"/>
         <activity android:name=".ui.decoration.MapActivity"/>
         <activity android:name=".ui.CommonalityActivity"/>
         <activity android:name=".custom.zxing.activity.CaptureActivity"/>
@@ -57,6 +62,15 @@
         <activity android:name=".ui.mine.MsgActivity"/>
         <activity android:name=".ui.decoration.PhotoActivity"/>
         <activity android:name=".ui.decoration.TestPhotoActivity"/>
+        <activity android:name=".ui.FingerprintActivity"/>
+        <activity android:name=".ui.mine.PassClockActivity"/>
+        <activity android:name=".ClocokActivity"/>
+        <activity android:name=".ui.mine.GroupActivity"/>
+        <activity android:name=".ui.mine.EchelonActivity"/>
+        <activity android:name=".ui.mine.SkidRightActivity"
+            android:theme="@style/AppTheme.Skid_1"/>
+        <activity android:name=".ui.mine.SkidRightTwoActivity"
+            android:theme="@style/AppTheme.Skid_2"/>
 
     </application>
 

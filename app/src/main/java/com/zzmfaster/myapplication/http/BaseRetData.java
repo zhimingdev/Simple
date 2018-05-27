@@ -16,7 +16,7 @@ public class BaseRetData<T> {
     }
 
     public boolean isSuccess() {
-        return getCode()==SUCCESS_CODE;
+        return (getCode()==SUCCESS_CODE)||(getCode() == 1);
     }
 
     public String getMessage() {

@@ -1,18 +1,24 @@
 package com.zzmfaster.myapplication.ui.test;
 
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.zzmfaster.myapplication.R;
+import com.zzmfaster.myapplication.adapter.MsgAdapter;
+import com.zzmfaster.myapplication.bean.GrilBean;
 import com.zzmfaster.myapplication.framework.BaseMvpActivity;
 import com.zzmfaster.myapplication.framework.common.CommonPresenter;
 import com.zzmfaster.myapplication.framework.common.ICommonContract;
 
+import java.util.List;
+
 import butterknife.BindView;
 
 public class TestActivity extends BaseMvpActivity<TestPresenter> implements TestContract.IView ,ICommonContract.IView {
-    @BindView(R.id.tv_test)
-    TextView tvTest;
+    @BindView(R.id.test_rcv)
+    RecyclerView testRcv;
+    private TestPresenter presenter;
+    private MsgAdapter msgAdapter;
 
 
     @Override
@@ -22,25 +28,14 @@ public class TestActivity extends BaseMvpActivity<TestPresenter> implements Test
 
     @Override
     public void initView() {
-        tvTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TestPresenter presenter = getPresenter(TestPresenter.class);
-                presenter.refreshText();
-
-                CommonPresenter commonPresenter = getPresenter(CommonPresenter.class);
-                commonPresenter.requestData();
-                showLoadingDialog();
-            }
-        });
+        presenter = getPresenter(TestPresenter.class);
+        presenter.getDatas();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        testRcv.setLayoutManager(linearLayoutManager);
+        msgAdapter = new MsgAdapter();
+        testRcv.setAdapter(msgAdapter);
     }
-
-
-    @Override
-    public void refreshText() {
-        tvTest.setText("变化后的文本");
-    }
-
 
 
 
@@ -49,9 +44,13 @@ public class TestActivity extends BaseMvpActivity<TestPresenter> implements Test
         creatPresenter(TestPresenter.class, CommonPresenter.class);
     }
 
-
     @Override
     public void refreshData() {
-        tvTest.setBackgroundColor(getResources().getColor(R.color.laser_color));
+
+    }
+
+    @Override
+    public void refreshText(List<GrilBean> list) {
+        msgAdapter.setNewData(list);
     }
 }

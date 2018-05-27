@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mine_shaft"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_no_avatar" />
+
+    <com.nightonke.blurlockview.BlurLockView
+        android:id="@+id/blurlockview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

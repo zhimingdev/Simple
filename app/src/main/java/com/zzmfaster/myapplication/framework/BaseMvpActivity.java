@@ -1,5 +1,6 @@
 package com.zzmfaster.myapplication.framework;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
 public abstract class BaseMvpActivity<P extends IBasePresenter> extends AppCompatActivity implements IBaseView {
     private AlertDialog dialog;
     protected List<BasePresenter> presenterList;
+    protected Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public abstract class BaseMvpActivity<P extends IBasePresenter> extends AppCompa
         super.onCreate(savedInstanceState);
         setContentView(getlayoutId());
         ButterKnife.bind(this);
+        mContext = this;
         initView();
     }
 

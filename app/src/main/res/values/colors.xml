@@ -14,6 +14,7 @@
     <color name="hint_text_color">#A5A5A5</color>
 
     <color name="bg_white">#ffffff</color>
+    <color name="thin_blue">#00BCF2</color>
 
     <!-- QRCode scanner color begin -->
     <color name="viewfinder_mask">#60000000</color>
@@ -21,8 +22,9 @@
     <color name="viewfinder_frame">#90FFFFFF</color>
     <color name="result_point_color">#C0FFFF00</color>
     <color name="laser_color">#0F0</color>
-    <color name="corner_color">#00FF00</color>
+    <color name="corner_color">#00ff00</color>
 
     <color name="hor_line">#f0f0f0</color>
+    <color name="mine_shaft">#303030</color>
     <!-- QRCode scanner color end -->
 </resources>

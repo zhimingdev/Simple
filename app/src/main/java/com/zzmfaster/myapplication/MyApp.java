@@ -4,6 +4,7 @@ import android.app.Application;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
+import com.blankj.utilcode.util.Utils;
 import com.mob.MobSDK;
 
 public class MyApp extends MultiDexApplication {
@@ -15,6 +16,7 @@ public class MyApp extends MultiDexApplication {
         instance = this;
         MobSDK.init(this);
         MultiDex.install(this);
+        Utils.init(this);
     }
 
     public static Application getInstance(){

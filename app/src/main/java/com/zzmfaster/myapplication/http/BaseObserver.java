@@ -16,7 +16,6 @@ import io.reactivex.disposables.Disposable;
  * @description 写自己的代码, 让别人说去吧!
  */
 
-//public abstract class BaseObserver<T> implements Observer<BaseRetData<T>> {
 public abstract class BaseObserver<T> implements Observer<T> {
 
     public BaseObserver() {
@@ -27,24 +26,6 @@ public abstract class BaseObserver<T> implements Observer<T> {
         onRequestStart();
 
     }
-
-//    @Override
-//    public void onNext(BaseRetData<T> retData) {
-//        if (retData.isSuccess()) {
-//            try {
-//                onSuccees(retData);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            try {
-//                onCodeError(retData);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
 
     @Override
     public void onNext(T t) {
