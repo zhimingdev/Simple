@@ -54,7 +54,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".GuideActivity"/>
+        <activity android:name=".GuideActivity"
+            android:theme="@style/AppTheme.Splash"/>
         <activity android:name=".ui.decoration.MapActivity"/>
         <activity android:name=".ui.CommonalityActivity"/>
         <activity android:name=".custom.zxing.activity.CaptureActivity"/>

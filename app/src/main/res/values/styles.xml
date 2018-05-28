@@ -91,4 +91,11 @@
         <item name="android:windowAllowEnterTransitionOverlap" tools:targetApi="lollipop">false</item>
     </style>
 
+    <style name="AppTheme.Splash">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 </resources>
