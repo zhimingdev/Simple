@@ -24,6 +24,7 @@ public class PassClockActivity extends BaseActivity implements BlurLockView.OnLe
         blurlockview.setTitle("请输入密码");
         blurlockview.setLeftButton("返回");
         blurlockview.setRightButton("删除");
+        blurlockview.setPasswordLength(4);
         blurlockview.setTypeface(Typeface.DEFAULT);
         blurlockview.setType(Password.NUMBER, false);
         blurlockview.setOnLeftButtonClickListener(this);

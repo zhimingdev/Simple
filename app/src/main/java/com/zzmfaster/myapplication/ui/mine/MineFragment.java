@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zzmfaster.myapplication.R;
@@ -35,6 +34,7 @@ public class MineFragment extends BaseFragment {
     @BindView(R.id.rl_groupstyle)
     RelativeLayout rlGroupstyle;
     Unbinder unbinder;
+    private String mS;
 
     public static MineFragment newInstance() {
         return new MineFragment();
@@ -74,14 +74,9 @@ public class MineFragment extends BaseFragment {
         mineAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                View view1 = gridLayoutManager.findViewByPosition(position);
-                view1.findViewById(R.id.tv_time).setBackgroundResource(R.drawable.radiobutton_selected_shape);
-                int position1 = SPUtils.getInstance().getInt("position", -1);
-                if (!(position == position1)) {
-                    View view2 = gridLayoutManager.findViewByPosition(position1);
-                    view2.findViewById(R.id.tv_time).setBackgroundResource(R.drawable.radiobutton_unselected_shape);
-                }
-                SPUtils.getInstance().put("position", position);
+                mS = ((MineAdapter) adapter).getItem(position);
+                System.out.println("点击的是"+mS);
+                mineAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -117,7 +112,11 @@ public class MineFragment extends BaseFragment {
         @Override
         protected void convert(BaseViewHolder helper, String item) {
             helper.setText(R.id.tv_time, item);
-
+            if (item.equals(mS)){
+                helper.getView(R.id.tv_time).setBackground(getResources().getDrawable(R.drawable.radiobutton_selected_shape));
+                return;
+            }
+            helper.getView(R.id.tv_time).setBackground(getResources().getDrawable(R.drawable.radiobutton_unselected_shape));
         }
     }
 

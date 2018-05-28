@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         />
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -19,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_above="@+id/layout_123"
             >
 
             <TextView
@@ -27,17 +27,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="15dp"
                 android:text="Input Password"
                 android:textSize="20sp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="56dp"
                 />
 
             <com.nightonke.blurlockview.Indicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="30dp"
                 />
 
@@ -47,29 +47,29 @@
             android:id="@+id/layout_123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/layout_456"
+            android:layout_above="@id/layout_456"
             >
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toStartOf="@+id/button_2"
                 android:layout_marginEnd="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toEndOf="@id/button_2"
                 android:layout_marginStart="@dimen/button_margin"
                 />
@@ -85,24 +85,24 @@
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_4"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toStartOf="@+id/button_5"
                 android:layout_marginEnd="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_5"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_6"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toEndOf="@id/button_5"
                 android:layout_marginStart="@dimen/button_margin"
                 />
@@ -118,24 +118,24 @@
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_7"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toStartOf="@+id/button_8"
                 android:layout_marginEnd="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_8"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/button_margin"
                 />
 
             <com.nightonke.blurlockview.BigButtonView
                 android:id="@+id/button_9"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_toEndOf="@id/button_8"
                 android:layout_marginStart="@dimen/button_margin"
                 />
@@ -144,13 +144,13 @@
 
         <com.nightonke.blurlockview.BigButtonView
             android:id="@+id/button_0"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
             android:layout_below="@+id/layout_789"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/text_layout"
@@ -158,7 +158,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="70dp"
         >
 
         <LinearLayout

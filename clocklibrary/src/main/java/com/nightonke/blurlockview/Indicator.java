@@ -30,8 +30,8 @@ public class Indicator extends LinearLayout {
             view.setBackgroundResource(R.drawable.indicator_background);
 
             LayoutParams params = new LayoutParams(
-                    30,
-                    30
+                    60,
+                    60
             );
             params.setMargins(20, 10, 20, 10);
             addView(view, params);

@@ -20,6 +20,7 @@ public class SpalshActivity extends AppCompatActivity {
         setContentView(R.layout.activity_spalsh);
         SharedPreferences sharedPreferences = this.getSharedPreferences("pass", Context.MODE_PRIVATE);
         String pas = sharedPreferences.getString("pas", "");
+        System.out.println("输入的密码"+pas);
         mFingerprintCore = new FingerprintCore(this);
         if (mFingerprintCore.isSupport()) {//支持指纹
             if (mFingerprintCore.isHasEnrolledFingerprints()) {
@@ -27,13 +28,18 @@ public class SpalshActivity extends AppCompatActivity {
                 startActivity(new Intent(SpalshActivity.this, FingerprintActivity.class));
                 finish();
             }else {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(SpalshActivity.this,GuideActivity.class));
-                        finish();
-                    }
-                },1500);
+                if (ObjectUtils.isNotEmpty(pas)) {
+                    startActivity(new Intent(SpalshActivity.this, ClocokActivity.class));
+                    this.finish();
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(SpalshActivity.this, GuideActivity.class));
+                            finish();
+                        }
+                    }, 1500);
+                }
             }
         }else {     //不支持指纹
             if (ObjectUtils.isEmpty(pas)) {

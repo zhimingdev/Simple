@@ -32,7 +32,7 @@ public class SkidRightActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        mSkidRightLayoutManager = new SkidRightLayoutManager(1.5f, 0.85f);
+        mSkidRightLayoutManager = new SkidRightLayoutManager(1.6f, 0.85f);
         recyclerView.setLayoutManager(mSkidRightLayoutManager);
         recyclerView.setAdapter(new MyAdapter());
     }
@@ -40,11 +40,6 @@ public class SkidRightActivity extends BaseActivity {
     @Override
     public void initData() {
 
-    }
-
-    @Override
-    protected void initImmersionBar(boolean isChange) {
-        super.initImmersionBar(true);
     }
 
     /**
