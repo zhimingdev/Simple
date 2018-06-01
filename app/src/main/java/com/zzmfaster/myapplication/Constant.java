@@ -9,4 +9,7 @@ public class Constant {
     public static final int REQ_PERM_CAMERA = 11003; // 打开摄像头
 
     public static final String INTENT_EXTRA_KEY_QR_SCAN = "qr_scan_result";
+
+    public static final String DEFAULT ="default";
+    public static final String CHOOSE ="choose";
 }

@@ -175,6 +175,8 @@ public class HomeFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity);
         rlv.setLayoutManager(linearLayoutManager);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rlv.setHasFixedSize(true);
+        rlv.setNestedScrollingEnabled(false);
         MovieAdapter movieAdapter = new MovieAdapter();
         rlv.setAdapter(movieAdapter);
         ivCode.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +188,7 @@ public class HomeFragment extends BaseFragment {
         Map<String, String> map = new HashMap<>();
         map.put("start", "0");
         map.put("count", "10");
-        RetrofitHelper.getInstance(mActivity)
+        RetrofitHelper.getInstance(mActivity,Constant.DEFAULT)
                 .getRetrofitService()
                 .getSearchBooks(map)
                 .compose(this.setThread())

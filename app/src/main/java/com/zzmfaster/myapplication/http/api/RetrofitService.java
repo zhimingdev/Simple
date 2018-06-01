@@ -2,6 +2,7 @@ package com.zzmfaster.myapplication.http.api;
 
 import com.zzmfaster.myapplication.bean.GrilBean;
 import com.zzmfaster.myapplication.bean.MovieBean;
+import com.zzmfaster.myapplication.bean.ResponseGrilsBean;
 import com.zzmfaster.myapplication.http.BaseRetData;
 
 import java.util.List;
@@ -18,5 +19,8 @@ public interface RetrofitService {
 
     @GET("a2a/impressApi/news/mergeList?sign=C7548DE604BCB8A17592EFB9006F9265&pageSize=20&gender=2&ts=1871746850&")
     Observable<BaseRetData<List<GrilBean>>> getNews(@QueryMap Map<String,String> map);
+
+    @GET("福利/10/1")
+    Observable<ResponseGrilsBean> getGirls();
 
 }

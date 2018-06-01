@@ -1,5 +1,7 @@
 package com.zzmfaster.myapplication.ui.find;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
+import com.zzmfaster.myapplication.ui.find.grils.GirlsFragment;
 import com.zzmfaster.myapplication.utils.AnimaUtils;
 import com.zzmfaster.myapplication.utils.PopuwindowUtils;
 
@@ -100,7 +103,11 @@ public class FindFragment extends BaseFragment {
             }
         });
 
-
+        FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        GirlsFragment girlsFragment = new GirlsFragment();
+        fragmentTransaction.add(R.id.find_fl,girlsFragment);
+        fragmentTransaction.commit();
     }
 
     @Override

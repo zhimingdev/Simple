@@ -106,8 +106,8 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
 //                        Intent intent = new Intent(mContext,TestPhotoActivity.class);
 ////                        intent.putExtra("url",item);
                         Bundle bundle = new Bundle();
-                        bundle.putString("url",item);
-                        gotoActivity(TestPhotoActivity.class,false, bundle);
+                        bundle.putString("url", item);
+                        gotoActivity(TestPhotoActivity.class, false, bundle);
                     }
                 });
             }
@@ -303,7 +303,7 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
         share.show(mActivity);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEvent(Msg messageEvent) {
         String className = messageEvent.getMsg();
         switch (className) {

@@ -29,7 +29,8 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-
+    <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
@@ -44,6 +45,16 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="4d29ad5ac3f196b8d48a97dd7a4dd878" />
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24915142" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="e3f17a8c48e9b12c54f05e08b6b36211" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKmXVxN3zMwRBpwlVEZRgc32fjfuyNNU6Zk75zi7H06PmIFsqV0OeK1hSPqfrEBFwHmhSNZPOoshsDUEzTuXdf3gjN2iq6hkYnRA3zFro6vl0P64UdzcvMtbBVps2LTnbzhQObaJuxRm6M4UxQGmYSbCXcBR3Nf7Eh1qIy8n9GzkZvwDJYBxnUOlha/sDWpOTPUultNI/uzS/sfoPjx60Be3VV53gr70zlYdLf59eN3FQYCmnU9dPEyregiS18Xdybaue6/Ar/qlLrrzjyZDVriGTTNe3vjohUr+SRosTuZYw7KBvUaMvw2OW61FSIjBcDZ9W/HEYtipB26kf6Mw97AgMBAAECggEAa/zBCmNHM2lBVoV5Vf7GWMif8xqTSDo+cV4xx2kSUFWtBiFr2mqX3Q6Lmpu/rDYRVkLwvHHpfoi2j1Bja5tXrTQb+/d9zzKLOlDF5Z7Rnq9vZtYEM4KCxY7SQwnhoCaUe4wpkU5h8C+GNvHbOZY37SaiINlDrTdOVaUbX0KddBZaLGDrnMFLIraBoakb8UI6Y2bk2TSFGXdjqDX6yZA24AhCnX09qBW+BWtOvSEHdTwc8XfIx1v2Cf1Qb3ROtYiypDFnDgHNhvNK98UrkBrbF/kqpDJZbAGKQIa3/yP4fN2Pyn1SK8ogc7Pg0Zb48nu7ePAr0JUporSb8DZOoED5oQKBgQDt7oUa+WPITgxVOnmBOBAtPWCteEWItc4wPAz9JxWv+mF17W6MP5CI445uxcQ61R5GnXkQaLqPJpFRjh2wq1aqubaNF5Kih0HojLFmsA8XSuxuENcw6FqnTRCDNCHrUEfoCKllDoUkWkxvdWgB3OrKhgAmHEvFfGZZQIUVqhUhEwKBgQCVH+IKk6qWrjWcaMqlxeBAnxCvXgpHt283M2sVfoCsW+ysGtV0i4CJQMI75s1JXZvhMQaiWoe1AuD1Td3LerVad3KpJyR8EcRiQP1scDQ7qa/5ijlKE5dbGTSCeaY7kUVa62NERNHlQ+JcZOOU6WSlQXmruL+qjjIwq7XUZaMM+QKBgG4uj4svRCsFIabyPkQ9vxgEHVoXoTOu5X3mwSkWSW/F5g4jVpcx9G+/2Tyo7rdD7BJNaDvWE9aoyJDY3BztK2RCPixWZzxGoJndVWW1UDe8JYLO36gxYZGqGWR45uA+vB3SrQc0UynDezP+TZzXPg9tQHJllh0s/4SDYV3n9oLrAoGABf7pLLmxMyu/9hD0jOO+13pNxm9GhImojBSiKpQSgluT0Xumt2/gdCRJavUlrdx4pv48oQx4xlteRh6iW0sMvZ1t28U6H07rkXPBfLmqL/frnmHjWcod3MjPpqtTdrOpkTVDoXwO4GPxVvurdtJHfKl8Rd5Avo/HDtPolKidfKkCgYEAk4a+ElrGli54TDqWkDNiWqsJ/ZyHEGxRDgSIYBNmIwPuMUleRHFXxoehNEPOiUC0XbXhUv0c9mYUOYPJ4ugQfXyAmrtt7sUUXeUwJc88r1DV4IrR7SpvUSR37u1ITF93GnzDdFY7GZwfTXPl0t3rEKZC1b2+BxaesanWy8ne+TA=" />
         <activity
             android:name=".SpalshActivity"
             android:theme="@style/BaseTheme">

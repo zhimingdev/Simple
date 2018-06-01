@@ -8,7 +8,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zzmfaster.myapplication.R;
@@ -26,8 +25,6 @@ public class CommonalityActivity extends BaseActivity {
     ImageButton ibShare;
     @BindView(R.id.wv_content)
     WebView wvContent;
-    @BindView(R.id.progressbar)
-    ProgressBar progressbar;
 
     @Override
     public int getLayoutId() {
@@ -50,7 +47,6 @@ public class CommonalityActivity extends BaseActivity {
         wvContent.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                progressbar.setProgress(newProgress);
             }
 
             @Override
@@ -80,10 +76,15 @@ public class CommonalityActivity extends BaseActivity {
         if (wvContent.canGoBack()) {
             wvContent.goBack();
         } else {
-            this.finish();
+            finish();
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        wvContent.stopLoading();
+        super.onDestroy();
+    }
 
     //自定义浏览器
     class MyWebViewClient extends WebViewClient {
@@ -97,21 +98,11 @@ public class CommonalityActivity extends BaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            progressbar.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            progressbar.setVisibility(View.GONE);
         }
     }
-
-    //预防内存泄露
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-
 }

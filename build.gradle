@@ -28,6 +28,9 @@ allprojects {
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }//添加jitpack仓库地址
         maven {
+            url "http://maven.aliyun.com/nexus/content/repositories/releases"
+        }
+        maven {
             url "http://mvn.mob.com/android"
         }
     }

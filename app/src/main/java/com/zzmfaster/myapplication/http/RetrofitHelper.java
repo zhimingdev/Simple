@@ -3,6 +3,7 @@ package com.zzmfaster.myapplication.http;
 import android.content.Context;
 
 import com.google.gson.GsonBuilder;
+import com.zzmfaster.myapplication.Constant;
 import com.zzmfaster.myapplication.http.api.RetrofitService;
 
 import java.util.concurrent.TimeUnit;
@@ -15,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitHelper {
 
     public static String Host ="http://api.douban.com/";
+    public static String Host2 ="http://gank.io/api/data/";
 
 
     private Context mContext;
@@ -32,27 +34,35 @@ public class RetrofitHelper {
     protected Retrofit retrofit;
     private RetrofitService retrofitService;
 
-    public RetrofitHelper(Context mContext) {
+    public RetrofitHelper(Context mContext,String type) {
         this.mContext = mContext;
+        this.type = type;
         init();
     }
 
 
-    public static RetrofitHelper getInstance(Context context) {
-        if (instance == null) {
-            instance = new RetrofitHelper(context);
-        }
+    public static RetrofitHelper getInstance(Context context,String type) {
+        instance = new RetrofitHelper(context,type);
         return instance;
     }
 
 
     public void init() {
-        retrofit = new Retrofit.Builder()
-                .client(client)
-                .baseUrl(RetrofitHelper.Host)
-                .addConverterFactory(factory)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+        if (type.equals(Constant.DEFAULT)) {
+            retrofit = new Retrofit.Builder()
+                    .client(client)
+                    .baseUrl(RetrofitHelper.Host)
+                    .addConverterFactory(factory)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }else {
+            retrofit = new Retrofit.Builder()
+                    .client(client)
+                    .baseUrl(RetrofitHelper.Host2)
+                    .addConverterFactory(factory)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }
         retrofitService = retrofit.create(RetrofitService.class);
     }
 
