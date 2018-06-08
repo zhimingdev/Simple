@@ -50,5 +50,7 @@ ext {
             multidex            :  'com.android.support:multidex:1.0.0',
 
             hotfix              : 'com.aliyun.ams:alicloud-android-hotfix:3.2.3',
+            SmartRefreshLayout  : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1',
+            SmartRefreshHeader  : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1',//没有使用特殊Header，可以不加这行
     ]
 }

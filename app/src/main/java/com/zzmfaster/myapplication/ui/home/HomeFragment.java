@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +22,9 @@ import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -64,7 +65,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.banner)
     Banner banner;
     @BindView(R.id.srfl)
-    SwipeRefreshLayout swipeRefreshLayout;
+    SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.filpper)
     ViewFlipper filPer;
     @BindView(R.id.iv_code)
@@ -83,6 +84,7 @@ public class HomeFragment extends BaseFragment {
     private String[] texts = {"测试文本1", "测试文本2", "测试文本3", "测试文本4", "测试文本5"};
     List<MovieBean.SubjectsBean> lists = new ArrayList<>();
     private List<MovieBean.SubjectsBean> subjects;
+    private MovieAdapter mMovieAdapter;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -134,25 +136,8 @@ public class HomeFragment extends BaseFragment {
         //设置轮播时间
         banner.setDelayTime(5000);
         banner.start();
-        swipeRefreshLayout.setRefreshing(true);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }, 1500);
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 1500);
-            }
-        });
+        mSmartRefreshLayout.autoRefresh();
+        mSmartRefreshLayout.setEnableLoadMore(false);
         startFilper();
     }
 
@@ -177,14 +162,37 @@ public class HomeFragment extends BaseFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rlv.setHasFixedSize(true);
         rlv.setNestedScrollingEnabled(false);
-        MovieAdapter movieAdapter = new MovieAdapter();
-        rlv.setAdapter(movieAdapter);
+        mMovieAdapter = new MovieAdapter();
+        rlv.setAdapter(mMovieAdapter);
+        getData();
         ivCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startQrCode();
             }
         });
+        mMovieAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                MovieBean.SubjectsBean subjectsBean = subjects.get(position);
+                String alt = subjectsBean.getAlt();
+                Bundle bundle = new Bundle();
+                bundle.putString("result",alt);
+                gotoActivity(CommonalityActivity.class,false,bundle);
+            }
+        });
+
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                getData();
+                refreshLayout.finishRefresh();
+            }
+        });
+
+    }
+
+    private void getData() {
         Map<String, String> map = new HashMap<>();
         map.put("start", "0");
         map.put("count", "10");
@@ -197,7 +205,7 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     protected void onSuccees(MovieBean t) throws Exception {
                         subjects = t.getSubjects();
-                        movieAdapter.setNewData(subjects);
+                        mMovieAdapter.setNewData(subjects);
                     }
 
                     @Override
@@ -210,18 +218,6 @@ public class HomeFragment extends BaseFragment {
                     protected void onFailure(Throwable e) throws Exception {
                     }
                 });
-
-        movieAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                MovieBean.SubjectsBean subjectsBean = subjects.get(position);
-                String alt = subjectsBean.getAlt();
-                Bundle bundle = new Bundle();
-                bundle.putString("result",alt);
-                gotoActivity(CommonalityActivity.class,false,bundle);
-            }
-        });
-
     }
 
     @Override
