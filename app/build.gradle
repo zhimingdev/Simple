@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.mob.sdk'
+apply plugin: 'io.objectbox'
 
 //android配置
 def config = rootProject.ext.android
@@ -109,7 +109,6 @@ dependencies {
     implementation librarys.SmartRefreshLayout
     implementation librarys.SmartRefreshHeader
     implementation 'com.android.support:multidex:+'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     implementation project(':clocklibrary')
