@@ -11,13 +11,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.base.BaseFragment;
 import com.zzmfaster.myapplication.custom.titleview.TitleView;
+import com.zzmfaster.myapplication.ui.AddViewActivity;
 import com.zzmfaster.myapplication.ui.test.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.Unbinder;
 
 public class MineFragment extends BaseFragment {
 
@@ -33,7 +33,8 @@ public class MineFragment extends BaseFragment {
     RelativeLayout rlPassClock;
     @BindView(R.id.rl_groupstyle)
     RelativeLayout rlGroupstyle;
-    Unbinder unbinder;
+    @BindView(R.id.rl_test)
+    RelativeLayout mRelativeLayout;
     private String mS;
 
     public static MineFragment newInstance() {
@@ -94,6 +95,13 @@ public class MineFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 gotoActivity(GroupActivity.class);
+            }
+        });
+
+        mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AddViewActivity.class);
             }
         });
     }

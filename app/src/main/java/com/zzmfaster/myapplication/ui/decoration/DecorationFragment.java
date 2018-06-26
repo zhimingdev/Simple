@@ -3,11 +3,14 @@ package com.zzmfaster.myapplication.ui.decoration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -57,6 +60,8 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
     DiscreteScrollView bannerRv;
     @BindView(R.id.tv_text)
     TextView tvText;
+    @BindView(R.id.et_money)
+    EditText etMoney;
     private BaseQuickAdapter adapter;
     private AMapLocationClient mLocationClient = null;////定位发起端
     private AMapLocationClientOption mLocationOption = null;//定位参数
@@ -68,6 +73,7 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
     private Runnable autoRunnable;
     private PopupWindow popupWindow;
     private Animation scaleAnimations;
+
 
     public static DecorationFragment newInstance() {
         return new DecorationFragment();
@@ -150,6 +156,79 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
             @Override
             public void onClick(View v) {
                 gotoActivity(MapActivity.class);
+            }
+        });
+
+//        EdittextUtils.setRegion(etMoney,0.01,999999.99);
+//        etMoney.setFilters(new InputFilter[]{new InputFilter() {
+//            int decimalNumber = 2;//小数点后保留位数
+//
+//            @Override
+//            //source:即将输入的内容 dest：原来输入的内容
+//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                String sourceContent = source.toString();
+//                String lastInputContent = dest.toString();
+//
+//                //验证删除等按键
+//                if (TextUtils.isEmpty(sourceContent)) {
+//                    return "";
+//                }
+//                //以小数点"."开头，默认为设置为“0.”开头
+//                if (sourceContent.equals(".") && lastInputContent.length() == 0) {
+//                    return "0.";
+//                }
+//                //输入“0”，默认设置为以"0."开头
+//                if (sourceContent.equals("0") && lastInputContent.length() == 0) {
+//                    return "0.";
+//                }
+//                //小数点后保留两位
+//                if (lastInputContent.contains(".")) {
+//                    int index = lastInputContent.indexOf(".");
+//                    if (dend - index >= decimalNumber + 1) {
+//                        return "";
+//                    }
+//
+//                }
+//                return null;
+//            }
+//        }});
+
+        etMoney.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String temp = s.toString();
+                if (99999.99 != -1 && 0.01 != -1) {
+                    double markVal = 0;
+//                    try {
+//                        markVal = Double.parseDouble(temp);
+//                    } catch (NumberFormatException e) {
+//                        markVal = 0;
+//                    }
+
+                    if (markVal > 99999.99) //设置的最大值MAX_VALUE
+                    {
+                        markVal = 99999.99;
+                    }
+                }
+                int posDot = temp.indexOf(".");
+                if (posDot == 0) s.insert(0, "0"); //开头输入.自定填充0.
+                if (temp.length() - posDot - 1 > 2)  //限制输入两位小数
+                {
+                    s.delete(posDot + 3, posDot + 4);
+                }
             }
         });
     }

@@ -60,3 +60,44 @@
 -keep class com.ta.utdid2.device.**{*;}
 #防止inline
 -dontoptimize
+
+#Okhttp3
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+#Okio
+-dontwarn okio.**
+
+
+# 2D地图
+-dontwarn com.amap.**
+-keep class com.amap.** {*; }
+
+-dontwarn com.alibaba.**
+-keep class com.alibaba.** {*; }
+
+-dontwarn com.parkingwang.**
+-keep class com.parkingwang.** {*; }
+
+# Retrofit
+-dontnote retrofit2.Platform
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+
+#友盟混淆
+#-dontwarn com.umeng.**
+#-keep class com.umeng*.** {*; }
+-dontoptimize
+-ignorewarnings
+-libraryjars libs/umeng-sharetool-6.9.2.jar
+-libraryjars libs/umeng-common-1.5.3.jar
+-dontwarn com.commom.**
+-keep class com.commom.** {*; }
+-dontwarn com.umeng.**
+-keep class com.umeng.** {*; }

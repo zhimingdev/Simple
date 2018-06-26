@@ -72,4 +72,12 @@
         android:id="@+id/tv_text"
         android:text="测试"/>
 
+    <EditText
+        android:id="@+id/et_money"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:hint="请输入金额"/>
+
 </LinearLayout>

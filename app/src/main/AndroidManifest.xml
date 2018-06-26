@@ -20,12 +20,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!--用于申请调用A-GPS模块-->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
     <!--用于申请获取蓝牙信息进行室内定位-->
-
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
@@ -45,6 +43,11 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="4d29ad5ac3f196b8d48a97dd7a4dd878" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5b2b3e91b27b0a02fd00006c" >
+        </meta-data>
 
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
@@ -83,6 +86,14 @@
             android:theme="@style/AppTheme.Skid_1"/>
         <activity android:name=".ui.mine.SkidRightTwoActivity"
             android:theme="@style/AppTheme.Skid_2"/>
+        <activity android:name=".ui.Aativity"/>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".ui.AddViewActivity"/>
 
     </application>
 

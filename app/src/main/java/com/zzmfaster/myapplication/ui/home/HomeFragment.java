@@ -28,6 +28,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 import com.zzmfaster.myapplication.Constant;
 import com.zzmfaster.myapplication.R;
@@ -38,6 +39,7 @@ import com.zzmfaster.myapplication.custom.zxing.activity.CaptureActivity;
 import com.zzmfaster.myapplication.http.BaseObserver;
 import com.zzmfaster.myapplication.http.BaseRetData;
 import com.zzmfaster.myapplication.http.RetrofitHelper;
+import com.zzmfaster.myapplication.ui.Aativity;
 import com.zzmfaster.myapplication.ui.CommonalityActivity;
 import com.zzmfaster.myapplication.utils.ToastUtils;
 
@@ -187,6 +189,13 @@ public class HomeFragment extends BaseFragment {
             public void onRefresh(RefreshLayout refreshLayout) {
                 getData();
                 refreshLayout.finishRefresh();
+            }
+        });
+
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                startActivity(new Intent(getContext(), Aativity.class));
             }
         });
 

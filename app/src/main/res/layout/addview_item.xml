@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/holo_orange_light"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_green_light"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        tools:text="测试文本"
+        android:id="@+id/tv_one"
+        android:textColor="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+</LinearLayout>

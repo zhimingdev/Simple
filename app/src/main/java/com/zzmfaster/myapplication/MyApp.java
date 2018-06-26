@@ -6,11 +6,12 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.blankj.utilcode.util.Utils;
-import com.mob.MobSDK;
 import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
-import com.zzmfaster.myapplication.db.MyObjectBox;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 public class MyApp extends MultiDexApplication {
     private static Application instance;
@@ -42,13 +43,18 @@ public class MyApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        MobSDK.init(this);
+//        MobSDK.init(this);
         MultiDex.install(this);
         Utils.init(this);
-        MyObjectBox.builder().androidContext(this).build();
+//        MyObjectBox.builder().androidContext(this).build();
 // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
+        UMConfigure.setLogEnabled(true);
+        UMShareAPI.get(this);
         SophixManager.getInstance().queryAndLoadNewPatch();
-
+        UMConfigure.init(this, "5b2b3e91b27b0a02fd00006c", "Umeng", UMConfigure.DEVICE_TYPE_PHONE,
+                "");
+        //初始化组件化基础库, 统计SDK/推送SDK/分享SDK都必须调用此初始化接口
+        PlatformConfig.setWeixin("wxf181d3d8e0e201a0", "634067b6db506698845f1340cdd850b3");
     }
 
     public static Application getInstance(){

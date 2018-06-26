@@ -99,6 +99,21 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/rl_test"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试"
+                android:textSize="20sp"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>
