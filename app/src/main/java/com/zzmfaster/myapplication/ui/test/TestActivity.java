@@ -29,7 +29,7 @@ public class TestActivity extends BaseMvpActivity<TestPresenter> implements Test
     @Override
     public void initView() {
         presenter = getPresenter(TestPresenter.class);
-        presenter.getDatas();
+        this.presenter.getDatas();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         testRcv.setLayoutManager(linearLayoutManager);

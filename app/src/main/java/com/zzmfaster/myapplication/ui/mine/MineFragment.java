@@ -35,6 +35,8 @@ public class MineFragment extends BaseFragment {
     RelativeLayout rlGroupstyle;
     @BindView(R.id.rl_test)
     RelativeLayout mRelativeLayout;
+    @BindView(R.id.rl_test_one)
+    RelativeLayout mRelativeLayoutOne;
     private String mS;
 
     public static MineFragment newInstance() {
@@ -102,6 +104,12 @@ public class MineFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 gotoActivity(AddViewActivity.class);
+            }
+        });
+        mRelativeLayoutOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(ThreeLoginActivity.class);
             }
         });
     }

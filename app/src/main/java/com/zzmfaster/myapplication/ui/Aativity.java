@@ -2,6 +2,7 @@ package com.zzmfaster.myapplication.ui;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.ShareBoardlistener;
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.framework.BaseMvpActivity;
+import com.zzmfaster.myapplication.framework.common.CommonPresenter;
 
 import java.lang.ref.WeakReference;
 
@@ -58,12 +60,36 @@ public class Aativity extends BaseMvpActivity {
             public void onClick(View v) {
                mShareAction.open();
             }
-        });
+       });
+
+        //异步方法
+        new AsyncTask<Long,String,Void>(){
+            @Override
+            protected Void doInBackground(Long... longs) {
+                tvShareYoumeng.setText("测试友盟分享");
+                return null;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onProgressUpdate(String...values) {
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }.execute();
     }
 
     @Override
     public void configPresenter() {
-
+        CommonPresenter presenter = (CommonPresenter) getPresenter(CommonPresenter.class);
     }
 
     private static class CustomShareListener implements UMShareListener {
