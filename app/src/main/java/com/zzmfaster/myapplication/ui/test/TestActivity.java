@@ -53,4 +53,6 @@ public class TestActivity extends BaseMvpActivity<TestPresenter> implements Test
     public void refreshText(List<GrilBean> list) {
         msgAdapter.setNewData(list);
     }
+
+
 }
