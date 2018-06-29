@@ -3,6 +3,7 @@ package com.zzmfaster.myapplication.ui;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,12 +19,13 @@ import com.umeng.socialize.utils.ShareBoardlistener;
 import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.framework.BaseMvpActivity;
 import com.zzmfaster.myapplication.framework.common.CommonPresenter;
+import com.zzmfaster.myapplication.framework.common.ICommonContract;
 
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 
-public class Aativity extends BaseMvpActivity {
+public class Aativity extends BaseMvpActivity implements ICommonContract.IView {
     @BindView(R.id.tv_share_youmeng)
     TextView tvShareYoumeng;
     private UMShareListener mShareListener;
@@ -36,6 +38,8 @@ public class Aativity extends BaseMvpActivity {
 
     @Override
     public void initView() {
+        CommonPresenter presenter = (CommonPresenter) getPresenter(CommonPresenter.class);
+        presenter.requestData();
         mShareListener = new CustomShareListener(this);
         /*增加自定义按钮的分享面板*/
         mShareAction = new ShareAction(Aativity.this).setDisplayList(
@@ -89,7 +93,17 @@ public class Aativity extends BaseMvpActivity {
 
     @Override
     public void configPresenter() {
-        CommonPresenter presenter = (CommonPresenter) getPresenter(CommonPresenter.class);
+        creatPresenter(CommonPresenter.class);
+    }
+
+    @Override
+    public void refreshData() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvShareYoumeng.setText("测试计时技术后的文字");
+            }
+        },2000);
     }
 
     private static class CustomShareListener implements UMShareListener {

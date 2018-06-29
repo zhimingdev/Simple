@@ -116,7 +116,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initImmersionBar(boolean isChange) {
-        super.initImmersionBar(true);
+        super.initImmersionBar(false);
     }
 
     public class MineAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
