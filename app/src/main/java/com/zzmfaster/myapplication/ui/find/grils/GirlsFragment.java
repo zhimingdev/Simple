@@ -1,8 +1,10 @@
 package com.zzmfaster.myapplication.ui.find.grils;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +17,7 @@ import com.zzmfaster.myapplication.R;
 import com.zzmfaster.myapplication.bean.ResponseGrilsBean;
 import com.zzmfaster.myapplication.custom.ScaleImageView;
 import com.zzmfaster.myapplication.framework.BaseMvpFragment;
+import com.zzmfaster.myapplication.ui.find.RecyclerviewActivity;
 
 import java.util.List;
 import java.util.Random;
@@ -67,6 +70,14 @@ public class GirlsFragment extends BaseMvpFragment implements GirlsContact.IVIEW
                 mPresenter.getGirlsData();
                 refreshLayout.finishRefresh();
                 refreshLayout.setNoMoreData(false);
+            }
+        });
+
+        mGirlsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext, RecyclerviewActivity.class));
+//                startActivity(new Intent(mContext, CustomRecyclerviewActivity.class));
             }
         });
     }

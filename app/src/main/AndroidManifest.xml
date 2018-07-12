@@ -97,6 +97,8 @@
         <activity android:name=".ui.mine.ThreeLoginActivity"/>
         <activity android:name="com.tencent.tauth.AuthActivity"/>
         <activity android:name="com.tencent.connect.common.AssistActivity"/>
+        <activity android:name=".ui.find.RecyclerviewActivity"/>
+        <activity android:name=".ui.find.CustomRecyclerviewActivity"/>
 
     </application>
 

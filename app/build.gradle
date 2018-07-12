@@ -129,5 +129,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation files('libs/umeng-sharetool-6.9.2.jar')
     implementation files('libs/umeng-common-1.5.3.jar')
+    implementation 'com.jude:easyrecyclerview:4.4.2'
 }
 
