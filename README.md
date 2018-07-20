@@ -1,5 +1,4 @@
 # Simple
-练手的项目,写的不好的地方,请多指教
 
 ## 添加DialogUtils 工具类,可以定义按钮背景颜色,支持一个或多个按钮
 DialogUtils.show(mActivity, "温馨提示", "这是测试", "#272727", "#46A3FF",
