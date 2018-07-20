@@ -37,6 +37,18 @@ android {
         android.compileOptions.sourceCompatibility 1.8
         android.compileOptions.targetCompatibility 1.8
         multiDexEnabled true
+
+//        ndk {
+//            //选择要添加的对应cpu类型的.so库。
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.zzmfaster.myapplication",
+                JPUSH_APPKEY : "e3dec33d8a13b06bb35c3523", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -130,5 +142,7 @@ dependencies {
     implementation files('libs/umeng-sharetool-6.9.2.jar')
     implementation files('libs/umeng-common-1.5.3.jar')
     implementation 'com.jude:easyrecyclerview:4.4.2'
+    implementation 'cn.jiguang.sdk:jpush:3.0.5'  // 此处以JPush 3.0.5 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.1.2'  // 此处以JCore 1.1.2 版本为例。
 }
 

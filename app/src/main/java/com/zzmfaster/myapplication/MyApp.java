@@ -13,6 +13,8 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class MyApp extends MultiDexApplication {
     private static Application instance;
 
@@ -55,6 +57,8 @@ public class MyApp extends MultiDexApplication {
                 "");
         //初始化组件化基础库, 统计SDK/推送SDK/分享SDK都必须调用此初始化接口
         PlatformConfig.setWeixin("wxf181d3d8e0e201a0", "634067b6db506698845f1340cdd850b3");
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     public static Application getInstance(){
