@@ -15,3 +15,5 @@ DialogUtils.show(mActivity, "温馨提示", "这是测试", "#272727", "#46A3FF"
 ## mvc和MVP架构都可以使用
 
 ## 网络框架使用retrofit和Rxjava,具体使用见http类
+
+## 适配5.0,6.0以上状态栏字体颜色变深问题
