@@ -145,4 +145,9 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    protected void initImmersionBar(boolean isChange) {
+        super.initImmersionBar(true);
+    }
 }

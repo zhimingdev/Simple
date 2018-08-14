@@ -122,4 +122,9 @@ public class FindFragment extends BaseFragment {
         }
     }
 
+    @Override
+    protected void initImmersionBar(boolean isChange) {
+        super.initImmersionBar(false);
+    }
+
 }

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.zzmfaster.myapplication.R;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -109,27 +108,19 @@ public abstract class BaseFragment extends Fragment {
         mImmersionBar = ImmersionBar.with(this);
         if (ImmersionBar.isSupportStatusBarDarkFont()) {
             if (isChange) {
-                mImmersionBar.statusBarDarkFont(false)
-                        .keyboardEnable(true)
-                        .init();
-            }else {
                 mImmersionBar.statusBarDarkFont(true)
                         .fitsSystemWindows(true)
                         .keyboardEnable(true)
                         .init();
+            }else {
+                mImmersionBar.statusBarDarkFont(false)
+                        .keyboardEnable(true)
+                        .init();
             }
         }else {
-            if (isChange) {
-                mImmersionBar.statusBarColorTransformEnable(true)
-                        .keyboardEnable(true)
-                        .init();
-            }else {
-                mImmersionBar.statusBarColor(R.color.colorPrimary)
-                        .fitsSystemWindows(true)
-                        .statusBarDarkFont(true)
-                        .keyboardEnable(true)
-                        .init();
-            }
+            mImmersionBar.statusBarDarkFont(false)
+                    .keyboardEnable(true)
+                    .init();
         }
     }
 
@@ -137,6 +128,14 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (isImmersionBarEnabled()){
+            initImmersionBar(true);
+        }
     }
 }
 

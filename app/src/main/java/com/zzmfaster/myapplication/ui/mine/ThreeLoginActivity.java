@@ -78,11 +78,6 @@ public class ThreeLoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void initImmersionBar(boolean isChange) {
-        super.initImmersionBar(true);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(mContext).onActivityResult(requestCode,resultCode,data);

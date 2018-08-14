@@ -231,7 +231,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initImmersionBar(boolean isChange) {
-        super.initImmersionBar(true);
+        super.initImmersionBar(false);
     }
 
     public class GlideImageLoader extends ImageLoader {

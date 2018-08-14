@@ -39,9 +39,4 @@ public class PassClockActivity extends BaseActivity implements BlurLockView.OnLe
     public void onClick() {
         this.finish();
     }
-
-    @Override
-    protected void initImmersionBar(boolean isChange) {
-        super.initImmersionBar(true);
-    }
 }

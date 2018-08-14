@@ -392,6 +392,11 @@ public class DecorationFragment extends BaseFragment implements AMapLocationList
         }
     }
 
+    @Override
+    protected void initImmersionBar(boolean isChange) {
+        super.initImmersionBar(false);
+    }
+
 }
 
 

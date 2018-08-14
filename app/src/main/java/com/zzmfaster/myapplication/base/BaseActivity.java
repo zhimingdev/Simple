@@ -123,12 +123,13 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }else {
             if (isChange) {
-                mImmersionBar.statusBarColorTransformEnable(true)
+                mImmersionBar.statusBarDarkFont(false)
+                        .fitsSystemWindows(true)
                         .keyboardEnable(true)
                         .init();
             }else {
-                mImmersionBar.statusBarColor(R.color.colorPrimary)
-                        .statusBarDarkFont(true)
+                mImmersionBar.statusBarDarkFont(false)
+                        .statusBarColor(R.color.colorPrimary)
                         .fitsSystemWindows(true)
                         .keyboardEnable(true)
                         .init();

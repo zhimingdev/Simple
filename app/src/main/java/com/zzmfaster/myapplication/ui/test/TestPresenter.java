@@ -22,7 +22,7 @@ public class TestPresenter extends BasePresenter<TestContract.IView> implements 
         RetrofitNewHelper.getNewInstance(MyApp.getInstance().getApplicationContext())
                 .getRetrofitService()
                 .getNews(map)
-                .compose(this.setThread())
+                .compose(setThread())
                 .subscribe(new BaseNewObserver<List<GrilBean>>() {
 
                     @Override

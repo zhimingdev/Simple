@@ -21,6 +21,7 @@ public abstract class BaseNewObserver<T> implements Observer<BaseRetData<T>> {
     @Override
     public void onSubscribe(Disposable d) {
         onRequestStart();
+
     }
 
     @Override
